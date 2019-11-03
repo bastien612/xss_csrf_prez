@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   db:
@@ -10,9 +10,9 @@ services:
     environment:
       - POSTGRES_PASSWORD=secret
       - POSTGRES_USER=secret
-      - POSTGRES_DB=secret
-      - USER=app
-      - PASSWORD=app
+      - POSTGRES_DB=cuisine
+      - APP_USER=app
+      - APP_PASSWORD=app
     volumes:
       - db-data:/var/lib/postgresql/data
 
@@ -21,4 +21,5 @@ services:
     ports:
       - 28080:8080
 
-volumes: db-data:
+volumes:
+  db-data:

@@ -1,4 +1,4 @@
-package com.laboratoire.checklist.model;
+package com.laboratoire.xss_csrf.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
@@ -16,7 +16,6 @@ import java.util.Date;
 )
 public class AuditModel {
 
-/*
     @PrePersist
     public void onPrePersist() {
         this.setCreatedAt(new Date());
@@ -27,7 +26,6 @@ public class AuditModel {
     public void onPreUpdate() {
         this.setUpdatedAt(new Date());
     }
-*/
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)

@@ -1,4 +1,4 @@
- package com.laboratoire.checklist.configuration;
+ package com.laboratoire.xss_csrf.configuration;
 
  import org.springframework.context.annotation.Configuration;
  import org.springframework.data.rest.core.config.RepositoryRestConfiguration;

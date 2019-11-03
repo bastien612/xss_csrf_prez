@@ -1,0 +1,8 @@
+## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring.datasource.url=jdbc:postgresql://localhost:5432/cuisine
+spring.datasource.username=app
+spring.datasource.password=app
+
+## Security
+#security.basic.enabled=false
+#management.security.enabled=false

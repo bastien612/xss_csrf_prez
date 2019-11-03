@@ -1,4 +1,4 @@
- package com.laboratoire.checklist.configuration;
+ package com.laboratoire.xss_csrf.configuration;
 
  import org.slf4j.Logger;
  import org.slf4j.LoggerFactory;

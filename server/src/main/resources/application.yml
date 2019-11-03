@@ -1,0 +1,47 @@
+## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring:
+  datasource:
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+  jpa:
+    properties:
+      hibernate:
+        ddl-auto: validate
+        open-in-view: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        # Eviter l'erreur lob pendant l'initialisation d'hibernate
+        jdbc:
+          lob:
+            non_contextual_creation:true
+# The SQL dialect makes Hibernate generate better SQL for the chosen database
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        security: DEBUG
+
+## Security
+#security.client-id=xss_csrf
+#security.client-secret=xss_csrf
+# in seconds
+security:
+  access-token-validity: 240000
+  refresh-token-validity: 240000
+  oauth2:
+    resource:
+      filter-order: 3
+  signing-key: 1444f92f-491a-4414-9a17-0e3ccb1a631a
+  encoding-strength: 256
+  security-realm: App Realm
+  jwt:
+    client-id: testjwtclientid
+    client-secret: XY7kmzoNzl100
+    scope-read: read
+    scope-write: write
+    resource-ids: testjwtresourceid
+    grant-type: password
+
+

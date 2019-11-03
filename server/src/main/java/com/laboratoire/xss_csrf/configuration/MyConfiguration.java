@@ -1,4 +1,4 @@
-package com.laboratoire.checklist.configuration;
+package com.laboratoire.xss_csrf.configuration;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;

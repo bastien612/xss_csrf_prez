@@ -1,0 +1,51 @@
+## Spring DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+spring.datasource.url=jdbc:postgresql://${POSTGRES_URL}/${POSTGRES_DB}
+spring.datasource.username=check
+spring.datasource.password=check
+
+
+
+# Spring boot actuator
+spring:
+  datasource:
+    password: check
+  jpa:
+    properties:
+      hibernate:
+        # The SQL dialect makes Hibernate generate better SQL for the chosen database
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        ddl-auto=none: validate
+        open-in-view: true
+        jdbc:
+          lob:
+            non_contextual_creation=true:
+# Eviter l'erreur lob pendant l'initialisation d'hibernate
+
+## Security
+#security.basic.enabled=false
+management:
+  endpoints:
+    shutdown:
+      enabled: true
+    web:
+      exposure:
+        include: *
+  security:
+    enabled: false
+security:
+  client-id: check
+  client-secret: check
+# in seconds
+  access-token-validity: 240000
+  refresh-token-validity: 240000
+
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        security: DEBUG
+
+
+
