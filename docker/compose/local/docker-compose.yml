@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  db:
+    image: checklist-db:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=check
+      - POSTGRES_USER=check
+      - POSTGRES_DB=check
+      - CHECKLIST_USER=app
+      - CHECKLIST_PASSWORD=app
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  app:
+    image: checklist-back:latest
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_PASSWORD=check
+      - POSTGRES_USER=check
+      - POSTGRES_DB=check
+
+  proxy:
+    image: checklist-proxy:latest
+    depends_on:
+      - app
+    ports:
+      - 7080:80
+    
+  adminer:
+    image: adminer
+    ports:
+      - 28080:8080
+
+volumes:
+  db-data:

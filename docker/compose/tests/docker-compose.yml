@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  test-e2e:
+    image: checklist-tests:latest
+    container_name: test-e2e
+    depends_on: 
+      - selenium-hub
+    environment:
+      - BASE_URL="http://localhost:3000"
+      - SELENIUM_HUB_URL=http://selenium-hub:4444
+      - IS_DOCKER_GRID=oui
+   
+  selenium-hub:
+    image: selenium/hub:3.14.0-krypton
+    container_name: selenium-hub
+    ports:
+      - 4444:4444
+
+  chrome:
+    image: selenium/node-chrome-debug:3.14.0-krypton
+    depends_on:
+      - selenium-hub
+    volumes:
+      - /dev/shm:/dev/shm
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+    

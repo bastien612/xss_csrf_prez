@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  db:
+    build:
+      context: ../../db/src
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_USER=secret
+      - POSTGRES_DB=secret
+      - USER=app
+      - PASSWORD=app
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    ports:
+      - 28080:8080
+
+volumes: db-data:

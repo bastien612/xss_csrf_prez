@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  db:
+    build: 
+      context: ../../checklist-db/src
+      dockerfile: Dockerfile
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  app:
+    build: 
+      context: ../../../checklist-server/
+      dockerfile: docker/debuggable-back/Dockerfile
+    volumes:
+      - ../.m2:/root/.m2
+    depends_on:
+      - db
+    env_file:
+      - .env
+    ports:
+      - 8081:8080
+      - 8000:8000
+    # entrypoint: sh -c echo /app/checklist-server.jar | entr "/app/entrypoint.sh";
+
+  proxy:
+    build: 
+      context: ../../checklist-proxy/src
+      dockerfile: Dockerfile
+    depends_on:
+      - app
+    env_file:
+      - .env
+    ports:
+      - 8080:80
+    
+  adminer:
+    image: adminer
+    ports:
+      - 28080:8080
+
+volumes:
+  db-data:

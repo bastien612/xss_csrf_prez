@@ -1,0 +1,4 @@
+#!/bin/sh
+
+psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -c "CREATE DATABASE ${DB_NAME};"
+psql -U ${POSTGRES_USER} -d ${POSTGRES_DB} -c "CREATE USER ${USER-check} WITH ENCRYPTED PASSWORD '${PASSWORD-check}';"
