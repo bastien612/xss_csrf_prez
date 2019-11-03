@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Auth</mat-card-title>
+    </mat-card-header>
+
+    <form
+      class="example-form"
+      (ngSubmit)="connect(authForm.value)"
+      [formGroup]="authForm"
+    >
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Login" formControlName="login" />
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Password"
+            type="password"
+            formControlName="password"
+          />
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-raised-button color="accent" type="submit" class="btn-block">
+        Connexion
+      </button>
+    </form>
+  </mat-card>
+</div>

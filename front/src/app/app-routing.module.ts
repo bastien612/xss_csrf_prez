@@ -13,6 +13,11 @@ const routes: Routes = [
       import('./modules/home/home.module').then(mod => mod.HomeModule)
   },
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then(mod => mod.AuthModule)
+  },
+  {
     path: 'error',
     loadChildren: () =>
       import('./modules/error/error.module').then(mod => mod.ErrorModule)
