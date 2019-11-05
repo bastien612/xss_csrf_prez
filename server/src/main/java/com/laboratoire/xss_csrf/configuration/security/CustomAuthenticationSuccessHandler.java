@@ -28,7 +28,8 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         SavedRequest savedRequest = requestCache.getRequest(request, response);
 
         if (savedRequest == null) {
-            super.onAuthenticationSuccess(request, response, authentication);
+            System.out.println("SUPEEEEER POOOOOOOOOOOOOOOOOOOUET");
+            clearAuthenticationAttributes(request);
 
             return;
         }
@@ -37,17 +38,18 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                 || (targetUrlParameter != null && StringUtils.hasText(request
                 .getParameter(targetUrlParameter)))) {
             requestCache.removeRequest(request, response);
-            super.onAuthenticationSuccess(request, response, authentication);
+            clearAuthenticationAttributes(request);
 
             return;
         }
 
         clearAuthenticationAttributes(request);
 
-        // Use the DefaultSavedRequest URL
-        String targetUrl = "/hello";
-        logger.debug("Redirecting to DefaultSavedRequest Url: " + targetUrl);
-        getRedirectStrategy().sendRedirect(request, response, targetUrl);
+//        // Use the DefaultSavedRequest URL
+//        String targetUrl = "/hello";
+//        logger.debug("Redirecting to DefaultSavedRequest Url: " + targetUrl);
+//        getRedirectStrategy().sendRedirect(request, response, targetUrl);
+
     }
 
     public void setRequestCache(RequestCache requestCache) {
