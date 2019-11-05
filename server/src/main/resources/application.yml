@@ -13,7 +13,7 @@ spring:
         # Eviter l'erreur lob pendant l'initialisation d'hibernate
         jdbc:
           lob:
-            non_contextual_creation:true
+            non_contextual_creation: true
 # The SQL dialect makes Hibernate generate better SQL for the chosen database
 
 logging:

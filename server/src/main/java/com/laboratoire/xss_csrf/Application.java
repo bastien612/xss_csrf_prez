@@ -7,15 +7,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
 @SpringBootApplication
 @EnableJpaAuditing
 public class Application {
-
-    @GetMapping("/hello")
-    String home() {
-        return "yoh";
-    }
 
     ConfigurableApplicationContext ctx;
 
