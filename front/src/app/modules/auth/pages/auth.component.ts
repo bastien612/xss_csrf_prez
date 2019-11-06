@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { AuthenticationService } from 'app/core/authentication/authentication.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -14,7 +15,7 @@ export class AuthComponent implements OnInit {
 
   constructor(
     private authService: AuthenticationService,
-    private http: HttpClient
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -25,27 +26,14 @@ export class AuthComponent implements OnInit {
   }
 
   connect(authData) {
-    this.authService.login(authData.login, authData.password);
-  }
-
-  onClick() {
-    this.authService.login('admin', 'admin').subscribe(
-      response => {
-        console.log('Response : ', response);
+    this.authService.login(authData.login, authData.password).subscribe(
+      () => {
+        console.log('redirect home');
+        this.router.navigateByUrl('/home');
       },
-      error => {
-        console.log('Error : ', error);
-      }
-    );
-  }
-
-  onClick2() {
-    this.http.get(environment.apiUrl + 'hello').subscribe(
-      response => {
-        console.log('Response : ', response);
-      },
-      error => {
-        console.log('Error : ', error);
+      () => {
+        console.log('redirect error');
+        this.router.navigateByUrl('/error');
       }
     );
   }

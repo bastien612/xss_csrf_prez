@@ -18,6 +18,11 @@ const routes: Routes = [
       import('./modules/auth/auth.module').then(mod => mod.AuthModule)
   },
   {
+    path: 'recipe',
+    loadChildren: () =>
+      import('./modules/recipe/recipe.module').then(mod => mod.recipeModule)
+  },
+  {
     path: 'error',
     loadChildren: () =>
       import('./modules/error/error.module').then(mod => mod.ErrorModule)

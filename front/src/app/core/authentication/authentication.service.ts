@@ -1,15 +1,42 @@
+import { User } from './../../shared/models/user.model';
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http/http.service';
+import { Router } from '@angular/router';
+import { of, Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private httpService: HttpService) {}
+  public isUserConnected = false;
+  public currentUser: User;
+
+  constructor(private httpService: HttpService, private router: Router) {}
+
+  isConnected() {
+    return this.isUserConnected;
+  }
 
   login(login, password) {
     console.log('connect : ', login);
     console.log('pass : ', password);
-    return this.httpService.getToken(login, password);
+    return this.httpService.getToken(login, password).pipe(
+      tap(response => {
+        console.log('success');
+        this.isUserConnected = true;
+        this.currentUser = new User(login);
+        return of(true);
+      }),
+      catchError(error => {
+        console.log('failure');
+        this.isUserConnected = false;
+        throw error;
+      })
+    );
+  }
+
+  getUsername(): string {
+    return this.currentUser.name;
   }
 }

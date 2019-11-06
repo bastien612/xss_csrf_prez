@@ -24,13 +24,10 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
                                         Authentication authentication) throws IOException,  javax.servlet.ServletException {
-        System.out.println("SUPEEEEER POOOOOOOOOOOOOOOOOOOUET");
         SavedRequest savedRequest = requestCache.getRequest(request, response);
 
         if (savedRequest == null) {
-            System.out.println("SUPEEEEER POOOOOOOOOOOOOOOOOOOUET");
             clearAuthenticationAttributes(request);
-
             return;
         }
         String targetUrlParameter = getTargetUrlParameter();

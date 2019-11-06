@@ -27,7 +27,7 @@ export class HttpService {
     );
 
     return this.httpClient.post(
-      this.backendUrl + 'login?username=admin&password=admin',
+      this.backendUrl + 'login?username=' + login + '&password=' + password,
       ''
     );
   }
