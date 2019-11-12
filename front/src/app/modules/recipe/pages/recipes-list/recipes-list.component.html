@@ -1,1 +1,23 @@
-<h1>recipes List</h1>
+<app-header></app-header>
+<h1>Liste des recettes</h1>
+<button
+  class="pageLink"
+  mat-raised-button
+  color="accent"
+  routerLink="/recipe/edit"
+>
+  Créer une recette
+</button>
+<button
+  class="pageLink"
+  mat-raised-button
+  color="accent"
+  (click)="clearRecipes()"
+>
+  Supprimer les recettes
+</button>
+<div *ngFor="let recipe of recipes">
+  <div [innerHtml]="recipe.title"></div>
+  <div [innerHtml]="recipe.body"></div>
+  <br />
+</div>

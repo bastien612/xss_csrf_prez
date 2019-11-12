@@ -29,22 +29,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//
 
         http
                 .csrf().disable()
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 .and()
-                .authorizeRequests()
-                .antMatchers("/hello").hasRole("ADMIN")
-                .anyRequest().denyAll()
-                .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .successHandler(new CustomAuthenticationSuccessHandler())
                 .failureHandler(new SimpleUrlAuthenticationFailureHandler())
                 .and()
-                .logout();
+                .logout()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessHandler(new CustomLogoutSuccessHandler())
+                .permitAll()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/hello").hasRole("ADMIN")
+                .antMatchers("/recipe").permitAll()
+                .antMatchers("/recipe/list").permitAll()
+                .anyRequest().denyAll();
     }
 }

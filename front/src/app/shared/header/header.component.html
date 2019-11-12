@@ -1,10 +1,13 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>Cuisine</span>
+    <button mat-flat-button routerLink="/home">Cuisine</button>
     <span class="spacer"></span>
-    <a class="pageLink" mat-button routerLink="/recipe" color="accent"
+    <a class="pageLink box" mat-button routerLink="/recipe" color="accent"
       >recipes</a
     >
+    <button class="box" (click)="logout()" mat-raised-button color="accent">
+      Deconnexion
+    </button>
     <a routerLink="/auth" mat-raised-button color="accent">Connexion</a>
   </mat-toolbar-row>
 </mat-toolbar>

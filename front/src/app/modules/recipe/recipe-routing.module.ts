@@ -1,21 +1,21 @@
-import { DisplayrecipeComponent } from './pages/display-recipe/display-recipe.component';
-import { EditrecipesComponent } from './pages/edit-recipes/edit-recipes.component';
-import { recipesListComponent } from './pages/recipes-list/recipes-list.component';
+import { DisplayRecipeComponent } from './pages/display-recipe/display-recipe.component';
+import { EditRecipesComponent } from './pages/edit-recipes/edit-recipes.component';
+import { RecipesListComponent } from './pages/recipes-list/recipes-list.component';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const routes: Routes = [
   {
     path: '',
-    component: recipesListComponent
+    component: RecipesListComponent
   },
   {
-    path: 'edit/',
-    component: EditrecipesComponent
+    path: 'edit',
+    component: EditRecipesComponent
   },
   {
-    path: 'display/',
-    component: DisplayrecipeComponent
+    path: 'display',
+    component: DisplayRecipeComponent
   }
 ];
 
@@ -23,4 +23,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class recipesRoutingModule {}
+export class RecipesRoutingModule {}

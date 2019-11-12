@@ -1,5 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AuthenticationGuardService } from './core/authentication/authentication-guard.service';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
   {
     path: 'recipe',
     loadChildren: () =>
-      import('./modules/recipe/recipe.module').then(mod => mod.recipeModule)
+      import('./modules/recipe/recipe.module').then(mod => mod.RecipeModule),
+    canActivate: [AuthenticationGuardService]
   },
   {
     path: 'error',

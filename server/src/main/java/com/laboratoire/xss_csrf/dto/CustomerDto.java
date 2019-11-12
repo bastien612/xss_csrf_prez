@@ -1,16 +1,16 @@
-package com.laboratoire.xss_csrf.dao;
+package com.laboratoire.xss_csrf.dto;
 
 import com.laboratoire.xss_csrf.model.CustomerModel;
 
 import java.util.UUID;
 
-public class CustomerDao {
+public class CustomerDto {
 
     private UUID id;
     private String login;
     private String password;
 
-    public CustomerDao(CustomerModel model) {
+    public CustomerDto(CustomerModel model) {
         id=model.getId();
         login=model.getLogin();
         password=model.getPassword();

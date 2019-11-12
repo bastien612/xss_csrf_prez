@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
+import { AuthenticationGuardService } from './core/authentication/authentication-guard.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     RecipeModule
   ],
-  providers: [],
+  providers: [AuthenticationGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

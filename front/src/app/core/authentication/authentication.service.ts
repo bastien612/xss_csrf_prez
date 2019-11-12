@@ -15,6 +15,7 @@ export class AuthenticationService {
   constructor(private httpService: HttpService, private router: Router) {}
 
   isConnected() {
+    console.log('is user connected :', this.isUserConnected);
     return this.isUserConnected;
   }
 
@@ -34,6 +35,15 @@ export class AuthenticationService {
         throw error;
       })
     );
+  }
+
+  logout() {
+    return this.httpService.logout().subscribe(() => {
+      this.isUserConnected = false;
+      this.currentUser = undefined;
+      console.log('pouet');
+      this.router.navigateByUrl('/home');
+    });
   }
 
   getUsername(): string {

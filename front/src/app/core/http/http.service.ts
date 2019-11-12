@@ -1,3 +1,4 @@
+import { RecipeModel } from './../../shared/models/recipe.model';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import {
@@ -5,7 +6,7 @@ import {
   HttpResponse,
   HttpParams
 } from '@angular/common/http';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,15 +17,34 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getToken(login: string, password: string): Observable<any> {
-    const params = new HttpParams()
-      .set('username', login)
-      .set('password', password);
+  createRecipe(title: string, body: string): Observable<RecipeModel> {
+    return this.httpClient.post(this.backendUrl + 'recipe', {
+      title,
+      body
+    });
+  }
 
-    const headers = new HttpHeaders().set(
-      'Content-Type',
-      'application/x-www-form-urlencoded'
-    );
+  fetchAllRecipe(): Observable<RecipeModel[]> {
+    return this.httpClient.get<RecipeModel[]>(this.backendUrl + 'recipe/list');
+  }
+
+  clearRecipes(): Observable<any> {
+    return this.httpClient.delete(this.backendUrl + 'recipe/list');
+  }
+
+  logout() {
+    return this.httpClient.get(this.backendUrl + 'logout');
+  }
+
+  getToken(login: string, password: string): Observable<any> {
+    // const params = new HttpParams()
+    //   .set('username', login)
+    //   .set('password', password);
+
+    // const headers = new HttpHeaders().set(
+    //   'Content-Type',
+    //   'application/x-www-form-urlencoded'
+    // );
 
     return this.httpClient.post(
       this.backendUrl + 'login?username=' + login + '&password=' + password,

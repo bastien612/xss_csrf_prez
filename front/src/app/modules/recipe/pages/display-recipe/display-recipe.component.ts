@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './display-recipe.component.html',
   styleUrls: ['./display-recipe.component.scss']
 })
-export class DisplayrecipeComponent {
+export class DisplayRecipeComponent {
   constructor() {}
 }
