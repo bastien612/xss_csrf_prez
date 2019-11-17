@@ -4,6 +4,7 @@ import com.laboratoire.xss_csrf.model.CustomerModel;
 
 import java.util.UUID;
 
+
 public class CustomerDto {
 
     private UUID id;

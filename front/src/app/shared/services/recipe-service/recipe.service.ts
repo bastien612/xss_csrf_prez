@@ -1,11 +1,11 @@
-import { catchError, tap } from 'rxjs/operators';
-import { RecipeModel } from './../../models/recipe.model';
-import { Observable, of } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { HttpService } from 'app/core/http/http.service';
+import { catchError, tap } from "rxjs/operators";
+import { RecipeModel } from "./../../models/recipe.model";
+import { Observable, of } from "rxjs";
+import { Injectable } from "@angular/core";
+import { HttpService } from "app/core/http/http.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class RecipeService {
   allRecipe: RecipeModel[];
@@ -25,8 +25,8 @@ export class RecipeService {
         return of(this.allRecipe);
       }),
       catchError(error => {
-        console.log('Error when fetching recipes');
-        alert(`Erreur lors de la récupérationd es recettes: ${error}`);
+        console.log("Error when fetching recipes");
+        alert(`Erreur lors de la récupération des recettes: ${error}`);
         return of([]);
       })
     );

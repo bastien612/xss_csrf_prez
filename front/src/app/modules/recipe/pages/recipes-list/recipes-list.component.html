@@ -17,7 +17,7 @@
   Supprimer les recettes
 </button>
 <div *ngFor="let recipe of recipes">
-  <div [innerHtml]="recipe.title"></div>
-  <div [innerHtml]="recipe.body"></div>
+  <div [innerHtml]="recipe.title | appBypassSecurity"></div>
+  <div [innerHtml]="recipe.body | appBypassSecurity"></div>
   <br />
 </div>
