@@ -10,6 +10,7 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "javascript.preferences.importModuleSpecifier": "non-relative"
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "prettier.singleQuote": true
   }
 }

@@ -9,12 +9,10 @@ public class CustomerDto {
 
     private UUID id;
     private String login;
-    private String password;
 
     public CustomerDto(CustomerModel model) {
         id=model.getId();
         login=model.getLogin();
-        password=model.getPassword();
     }
 
 
@@ -32,13 +30,5 @@ public class CustomerDto {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

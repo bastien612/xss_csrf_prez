@@ -12,12 +12,37 @@ export class AuthenticationService {
   public isUserConnected = false;
   public currentUser: User;
 
-  constructor(private httpService: HttpService, private router: Router) {}
+  constructor(private httpService: HttpService, private router: Router) {
+    if (!localStorage.getItem('isConnected')) {
+      this.resetUserInfo();
+    }
+  }
 
   isConnected() {
-    console.log('is user connected :', this.isUserConnected);
-    return this.isUserConnected;
+    console.log('is user connected :', localStorage.getItem('isConnected'));
+    if (localStorage.getItem('isConnected') === 'true') {
+      return true;
+    } else {
+      return false;
+    }
   }
+
+  // reconnect() {
+  //   console.log('try reconnect');
+  //   if (!this.isUserConnected) {
+  //     this.httpService.reconnect().subscribe(
+  //       response => {
+  //         if (response.name) {
+  //           this.currentUser = new User(response.name);
+  //           this.isUserConnected = true;
+  //         }
+  //       },
+  //       () => {
+  //         console.log('error when reconnect');
+  //       }
+  //     );
+  //   }
+  // }
 
   login(login, password) {
     console.log('connect : ', login);
@@ -27,11 +52,14 @@ export class AuthenticationService {
         console.log('success');
         this.isUserConnected = true;
         this.currentUser = new User(login);
+        localStorage.setItem('isConnected', 'true');
+        localStorage.setItem('name', login);
         return of(true);
       }),
       catchError(error => {
         console.log('failure');
         this.isUserConnected = false;
+        this.resetUserInfo();
         throw error;
       })
     );
@@ -39,14 +67,20 @@ export class AuthenticationService {
 
   logout() {
     return this.httpService.logout().subscribe(() => {
-      this.isUserConnected = false;
-      this.currentUser = undefined;
-      console.log('pouet');
+      this.resetUserInfo();
       this.router.navigateByUrl('/home');
     });
   }
 
   getUsername(): string {
-    return this.currentUser.name;
+    return localStorage.getItem('name');
+  }
+
+  resetUserInfo() {
+    console.log('this.resetUserInfo');
+    localStorage.setItem('isConnected', 'false');
+    localStorage.setItem('name', 'inconnu');
+    this.isUserConnected = false;
+    this.currentUser = undefined;
   }
 }

@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { RecipeModel } from './../../shared/models/recipe.model';
 import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -7,7 +8,6 @@ import {
   HttpParams
 } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +50,9 @@ export class HttpService {
       this.backendUrl + 'login?username=' + login + '&password=' + password,
       ''
     );
+  }
+
+  reconnect(): Observable<any> {
+    return this.httpClient.get(this.backendUrl + 'customer');
   }
 }
