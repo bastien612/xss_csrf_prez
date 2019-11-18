@@ -5,13 +5,3 @@
 <button (click)="createRecipe('recette de malory', 'code malveillant')">
   click
 </button>
-
-<form
-  action="http://localhost:4300/api/recipe"
-  method="post"
-  enctype="text/plain"
->
-  <label for="POST-name">Nom :</label>
-  <input id="POST-name" type="text" name="name" value="pouet" />
-  <input type="submit" value="Enregistrer" />
-</form>

@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -20,6 +22,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/recipe").allowedOrigins("*");
+            }
+        };
+    }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -50,8 +63,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/hello").hasRole("ADMIN")
-                .antMatchers("/recipe").permitAll()
-                .antMatchers("/recipe/list").permitAll()
+                .antMatchers("/recipe").authenticated()
+                .antMatchers("/recipe/list").authenticated()
+                .antMatchers("/error").permitAll()
                 .anyRequest().denyAll();
     }
 }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -11,8 +10,6 @@ export class AppComponent {
   title = 'mallory-front';
 
   constructor(public httpClient: HttpClient) {}
-
-  sendRequest() {}
 
   createRecipe(title: string, body: string): void {
     this.httpClient

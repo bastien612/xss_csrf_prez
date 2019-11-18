@@ -33,7 +33,7 @@ export class HttpService {
   }
 
   logout() {
-    return this.httpClient.get(this.backendUrl + 'logout');
+    return this.httpClient.post(this.backendUrl + 'logout', '');
   }
 
   getToken(login: string, password: string): Observable<any> {
