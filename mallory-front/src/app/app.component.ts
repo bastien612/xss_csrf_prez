@@ -13,7 +13,7 @@ export class AppComponent {
 
   createRecipe(title: string, body: string): void {
     this.httpClient
-      .post('http://localhost:4300/api/recipe', {
+      .post('http://localhost:4200/api/recipe', {
         title,
         body
       })
